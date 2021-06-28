@@ -11,7 +11,7 @@
     "rollback": "knex migrate: rollback",
     "seed": "knex seed:run",
     "heroku-postbuild": "cd client && npm i && npm run build",
-    "reup": "knex migrate: rollback && knex migrate: latest && knex seed: run"
+    "reup": "knex migrate:rollback && knex migrate:latest && knex seed:run"
   },
   "repository": {
     "type": "git",
