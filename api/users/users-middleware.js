@@ -111,11 +111,29 @@ const validateLogin = (req, res, next) => {
         })
 }
 
+const confirmLogin = (req, res, next) => {
+    const { username, password } = req.body
+    if (!username || username.trim() === null ||
+        !password || password.trim() === null
+    ) {
+        res.status(400).json({
+            message: "complete all required fields"
+        })
+    }
+    else {
+        next()
+    }
+
+}
+
 
 
 module.exports = {
     checkId,
     confirmRegistration,
     checkUnique,
+    validateLogin,
+    confirmLogin
+
 
 }
