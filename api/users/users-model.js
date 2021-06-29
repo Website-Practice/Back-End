@@ -23,7 +23,7 @@ async function changeUser(user_id, user) {
     return db('users').where({ user_id }).first()
 }
 
-function deleteSpecies(user_id) {
+function deleteUser(user_id) {
     return db('users').where({ user_id }).del();
 }
 
