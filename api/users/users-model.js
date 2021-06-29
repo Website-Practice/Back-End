@@ -13,7 +13,7 @@ function getById(user_id) {
 }
 
 async function createUser(user) {
-    const [user_id] = await db('users').insert(user);
+    const [user_id] = await db('users').insert(user, 'user_id');
     return db('users').where({ user_id }).first();
 }
 
@@ -38,7 +38,7 @@ module.exports = {
     getBy,
     getById,
     createUser,
-    deleteSpecies,
+    deleteUser,
     changeUser
 
 }

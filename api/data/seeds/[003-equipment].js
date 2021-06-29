@@ -1,5 +1,5 @@
 
-exports.seed = function(knex) {
+exports.seed = function (knex) {
   return knex('equipment').insert([
     {
       equipment_name: "Shitty Ass Mac",

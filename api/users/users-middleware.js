@@ -49,7 +49,7 @@ const confirmRegistration = (req, res, next) => {
         !address_line || address_line.trim() === null ||
         !address_state || address_state.trim() === null ||
         !address_city || address_city.trim() === null ||
-        !zip_code || zip_code.trim() === null ||
+        !zip_code || zip_code === null ||
         !password || password.trim() === null
     ) {
         res.status(400).json({
@@ -63,24 +63,28 @@ const confirmRegistration = (req, res, next) => {
 
 const checkUnique = (req, res, next) => {
     const { username, email_address, phone_number } = req.body
+    console.log(1, req.body)
     Users.getBy({ username })
         .then(user => {
-            if (user) {
+
+            if (user.username !== undefined) {
+                // console.log(user, user.username)
                 res.status(422).json({
                     message: "username already taken"
                 })
+
             }
             else {
                 Users.getBy({ email_address })
                     .then(user => {
-                        if (user) {
+                        if (user.email_address !== undefined) {
                             res.status(422).json({
                                 message: "an account has already been created with that email address"
                             })
                         }
                         Users.getBy({ phone_number })
                             .then(user => {
-                                if (user) {
+                                if (user.phone_number !== undefined) {
                                     res.status(422).json({
                                         message: "an account has already been created with that phone number"
                                     })

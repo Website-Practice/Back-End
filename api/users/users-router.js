@@ -27,7 +27,7 @@ router.get('/:user_id', checkId, (req, res, next) => {
         .catch(next)
 })
 
-router.post('/register', confirmRegistration, checkUnique, (req, res, next) => {
+router.post('/register', checkUnique, confirmRegistration, (req, res, next) => {
     const { username,
         name,
         email_address,

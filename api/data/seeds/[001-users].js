@@ -1,6 +1,7 @@
 
-exports.seed = function(knex) {
+exports.seed = function (knex) {
   return knex('users').insert([
+
     {
       username: "weston",
       name: "Weston Woodard",
@@ -10,7 +11,7 @@ exports.seed = function(knex) {
       address_state: "AZ",
       address_city: "Bilboshire",
       zip_code: "55555",
-      password: ""
+      password: "$2a$08$DgoOcE7JkdvaXdSq1SzeWujH3Bc3oHQO252GrEjXRs2x0cYus1wiK"
     },
     {
       username: "nate",
@@ -21,7 +22,7 @@ exports.seed = function(knex) {
       address_state: "AZ",
       address_city: "Bilboshire",
       zip_code: "55555",
-      password: ""
+      password: "$2a$08$DgoOcE7JkdvaXdSq1SzeWujH3Bc3oHQO252GrEjXRs2x0cYus1wiK"
     },
     {
       username: "connie",
@@ -32,7 +33,7 @@ exports.seed = function(knex) {
       address_state: "AZ",
       address_city: "Bilboshire",
       zip_code: "55555",
-      password: ""
+      password: "$2a$08$DgoOcE7JkdvaXdSq1SzeWujH3Bc3oHQO252GrEjXRs2x0cYus1wiK"
     }
   ]);
 }
