@@ -8,6 +8,11 @@ function findEquipmentById(equipment_id) {
     return db('equipment').where({ equipment_id }).first()
 }
 
+function findEquipmentByOwner(owner_id) {
+    return db('equipment').where({owner_id})
+}
+
+
 function createEquipment(equipment) {
     return db('equipment').insert(equipment)
 }
@@ -34,6 +39,7 @@ function deleteEquipment(equipment_id, owner_id) {
 module.exports = {
     getEquipment,
     findEquipmentById,
+    findEquipmentByOwner,
     createEquipment,
     findOwner,
     updateEquipment,

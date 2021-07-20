@@ -15,6 +15,14 @@ router.get('/', (req, res, next) => {
         .catch(next)
 })
 
+router.get('/:owner_id', (req, res, next) => {
+    Equipment.findEquipmentByOwner(req.params.owner_id)
+        .then(equipments => {
+            res.status(200).json(equipments)
+        })
+        .catch(next)
+})
+
 router.get('/:equipment_id', checkId, (req, res, next) => {
     console.log(req.params)
     const id = req.params.equipment_id
