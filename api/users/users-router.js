@@ -51,7 +51,8 @@ router.post('/register', checkUnique, confirmRegistration, (req, res, next) => {
     })
 
         .then(user => {
-            res.status(201).json(user)
+            const token = tokenBuilder(user)
+            res.status(201).json({user, token, message: "user successfully created"})
         })
         .catch(next)
 })
@@ -60,9 +61,8 @@ router.post('/login', validateLogin, confirmLogin, (req, res, next) => {
     const { username } = req.body.username
     Users.getBy({ username })
         .then(([user]) => {
-            const id = user.user_id
             const token = tokenBuilder(user)
-            res.status(200).json({ id, token, message: "logged in successfully" })
+            res.status(200).json({ user, token, message: "logged in successfully" })
         })
         .catch(next)
 
