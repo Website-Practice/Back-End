@@ -1,5 +1,7 @@
 const Users = require('./users-model')
 const bcrypt = require('bcryptjs')
+const jwt = require('jsonwebtoken');
+const {JWT_SECRET} = require('../secrets');
 // find specific user by id
 // getbyid
 // 
@@ -13,6 +15,27 @@ const bcrypt = require('bcryptjs')
 // 
 // confirm user filled out all fields on login
 // 
+
+// checks if token is present and checks token secret against config secret.
+const restrict = (req,res,next) => {
+    const token = req.headers.authorization
+
+    if(!token){
+        res.status(401).json("no token found")
+    }else{
+        jwt.verify(token, JWT_SECRET,(err,decoded)=>{
+            if(err){
+                res.status(401).json(err.message)
+            }else{
+                req.decodedToken = decoded
+                next()
+            }
+        })
+    }
+}
+
+
+
 const checkId = (req, res, next) => {
     const id = req.params.user_id
     Users.getById(id)
@@ -137,7 +160,8 @@ module.exports = {
     confirmRegistration,
     checkUnique,
     validateLogin,
-    confirmLogin
+    confirmLogin,
+    restrict
 
 
 }

@@ -2,8 +2,8 @@
 exports.seed = function (knex) {
   return knex('equipment').insert([
     {
-      equipment_name: "Shitty Ass Mac",
-      equipment_description: "It doesn't work and I hate it so take it the fuck away",
+      equipment_name: "Old Mac",
+      equipment_description: "It doesn't work and I hate it so take it away",
       cost: 20.00,
       owner_id: 1,
       equipment_type_id: 3

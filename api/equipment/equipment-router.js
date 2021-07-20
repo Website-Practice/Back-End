@@ -5,6 +5,7 @@ const Equipment = require('./equipment-model.js');
 const {
     checkId,
     checkOwnerId,
+    restrict
 } = require('./equipment-middleware.js')
 
 router.get('/', (req, res, next) => {
@@ -53,7 +54,7 @@ router.post('/newlisting/:owner_id', checkOwnerId, (req, res, next) => {
         .catch(next)
 })
 
-router.delete('/removelisting/:owner_id/:equipment_id', checkId, checkOwnerId, (req, res, next) => {
+router.delete('/removelisting/:owner_id/:equipment_id', checkId, checkOwnerId, restrict, (req, res, next) => {
     const prodID = req.params.equipment_id
     const ownerID = req.params.owner_id
     Equipment.deleteEquipment(prodID, ownerID)
